@@ -55,10 +55,37 @@ const randomBtn = document.querySelector('.random-btn');
 
 let currentItem = 0;
 //load initial items
+
+
 window.addEventListener('DOMContentLoaded', ()=>{
-  const item =reviews[currentItem];
+  showPerson(currentItem);
+});
+
+//function for showing person
+
+function showPerson(person){
+  const item =reviews[person];
   img.src = item.img;
   author.textContent = item.name;
   job.textContent = item.job;
   info.textContent = item.text;
-})
+}
+
+//show next person
+
+nextBtn.addEventListener('click',()=>{
+  currentItem++;
+  if (currentItem>reviews.length-1) {
+    currentItem = 0;
+  }
+  showPerson(currentItem);
+});
+
+//show prevperson
+prevBtn.addEventListener('click',()=>{
+  currentItem--;
+  if (currentItem<0) {
+    currentItem = reviews.length-1;
+  }
+  showPerson(currentItem);
+});
